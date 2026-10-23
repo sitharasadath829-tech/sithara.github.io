@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio | Computer Science</title>
+  <meta name="description" content="Computer Science graduate exploring software engineering, AI, and Forward Deployed Engineering.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.7;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 8%;
+      border-bottom: 1px solid #263449;
+    }
+
+    nav a, .links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      margin-left: 16px;
+    }
+
+    .logo { color: #60a5fa; font-weight: bold; font-size: 22px; }
+
+    header {
+      padding: 100px 8% 80px;
+      max-width: 1000px;
+    }
+
+    .tag { color: #60a5fa; font-weight: bold; }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: 1.15;
+      margin: 18px 0;
+      color: white;
+    }
+
+    h2 { color: white; margin-bottom: 18px; }
+
+    .intro { max-width: 650px; color: #cbd5e1; }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+    }
+
+    section { padding: 55px 8%; }
+
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 15px;
+      max-width: 750px;
+    }
+
+    .muted { color: #94a3b8; }
+    .skills { color: #93c5fd; margin-top: 10px; }
+
+    footer {
+      padding: 28px 8%;
+      border-top: 1px solid #263449;
+      color: #94a3b8;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #60a5fa;
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">MyPortfolio.</div>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <p class="tag">COMPUTER SCIENCE · SOFTWARE · AI</p>
+    <h1>Building solutions to real-world problems.</h1>
+    <p class="intro">
+      I'm an MSc Computer Science graduate developing my skills
+      in software engineering, APIs, databases, and AI-powered
+      applications, with a growing interest in Forward Deployed Engineering.
+    </p>
+    <a class="button" href="#projects">Explore My Projects ↓</a>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+      <p>
+        I have a postgraduate background in Computer Science and
+        enjoy learning how technology can solve practical problems.
+        I'm currently building hands-on projects to strengthen my
+        software development and engineering skills.
+      </p>
+      <p class="skills">
+        Skills I'm developing: Python · Git · GitHub · SQL · APIs · AI
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Featured Projects</h2>
+    <div class="card">
+      <h3>University Assistant</h3>
+      <p class="muted">Python · SQLite · FastAPI · AI</p>
+      <p>
+        A learning project designed to help students find answers
+        from university study materials.
+      </p>
+      <p class="muted">Status: In development</p>
+    </div>
+    <div class="card">
+      <h3>More projects coming soon</h3>
+      <p>
+        I'll add more projects here as I build and deploy applications.
+      </p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <p>I'm interested in connecting with people working in software
+        engineering, AI, and technology.</p>
+      <p class="skills">Add your professional email and LinkedIn links here.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 My Portfolio · Built with HTML and CSS</p>
+  </footer>
+
+</body>
+</html>
