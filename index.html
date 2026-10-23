@@ -799,5 +799,197 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+  
+<style>
+  #chat-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999;
+    background: #2563eb;
+    color: white;
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px #2563eb44;
+  }
+
+  #chat-box {
+    display: none;
+    position: fixed;
+    right: 24px;
+    bottom: 96px;
+    width: min(340px, calc(100vw - 32px));
+    height: 430px;
+    z-index: 9999;
+    background: white;
+    border: 1px solid #dbeafe;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px #17255422;
+    font-family: Arial, sans-serif;
+    color: #172554;
+  }
+
+  #chat-header {
+    background: #2563eb;
+    color: white;
+    padding: 16px;
+    font-weight: bold;
+  }
+
+  #chat-messages {
+    height: 295px;
+    padding: 12px;
+    overflow-y: auto;
+    background: #f8fbff;
+  }
+
+  .chat-msg {
+    padding: 10px 12px;
+    margin: 8px 0;
+    border-radius: 12px;
+    max-width: 88%;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .bot-msg {
+    background: #e8f0ff;
+    margin-right: auto;
+  }
+
+  .user-msg {
+    background: #2563eb;
+    color: white;
+    margin-left: auto;
+  }
+
+  #chat-form {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    border-top: 1px solid #dbeafe;
+  }
+
+  #chat-input {
+    min-width: 0;
+    flex: 1;
+    border: 1px solid #bfdbfe;
+    border-radius: 9px;
+    padding: 10px;
+    outline-color: #2563eb;
+  }
+
+  #chat-form button {
+    background: #2563eb;
+    color: white;
+    border: 0;
+    border-radius: 9px;
+    padding: 10px 12px;
+    cursor: pointer;
+  }
+</style>
+
+<button id="chat-toggle" aria-label="Open portfolio chat"
+        aria-expanded="false">💬</button>
+
+<div id="chat-box">
+  <div id="chat-header">
+    Portfolio Assistant
+    <span style="float:right;font-weight:normal">● Online</span>
+  </div>
+
+  <div id="chat-messages" aria-live="polite">
+    <div class="chat-msg bot-msg">
+      Hi! 👋 Welcome to my portfolio.
+      Ask me about my education, experience, skills or projects!
+    </div>
+  </div>
+
+  <form id="chat-form">
+    <input id="chat-input" placeholder="Ask me something..."
+           aria-label="Your message" maxlength="500" required>
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+<script>
+(() => {
+  const toggle = document.getElementById("chat-toggle");
+  const box = document.getElementById("chat-box");
+  const messages = document.getElementById("chat-messages");
+  const form = document.getElementById("chat-form");
+  const input = document.getElementById("chat-input");
+
+  toggle.addEventListener("click", () => {
+    const isOpen = box.style.display !== "block";
+    box.style.display = isOpen ? "block" : "none";
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) input.focus();
+  });
+
+  function addMessage(text, type) {
+    const div = document.createElement("div");
+    div.className = "chat-msg " + type;
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function getReply(message) {
+    const q = message.toLowerCase();
+
+    if (/\b(hi|hello|hey|hai)\b/.test(q))
+      return "Hello! 😊 What would you like to know about my portfolio?";
+
+    if (q.includes("name") || q.includes("about you"))
+      return "I'm a Computer Science professional interested in AI, software development and real-world problem-solving.";
+
+    if (q.includes("education") || q.includes("degree") ||
+        q.includes("qualification"))
+      return "I have an MSc in Computer Science, a bachelor's degree in Mathematics, and UGC NET qualification.";
+
+    if (q.includes("experience") || q.includes("emmrc") ||
+        q.includes("job") || q.includes("work"))
+      return "I'm working as an Academic Coordinator at EMMRC, University of Calicut, supporting educational content and academic coordination.";
+
+    if (q.includes("skill") || q.includes("technology") ||
+        q.includes("technical"))
+      return "My skills and learning areas include Python, Git/GitHub, SQL, APIs, FastAPI and AI technologies.";
+
+    if (q.includes("project"))
+      return "My portfolio features a University Assistant project and planned projects involving data analysis and AI support. Check the Projects section for their current status.";
+
+    if (q.includes("contact") || q.includes("email"))
+      return "Please visit the Contact section of this website to find my contact details.";
+
+    if (q.includes("afsb") || q.includes("ssc cgl"))
+      return "This portfolio focuses on my Computer Science background, professional experience and technology projects.";
+
+    if (q.includes("thank"))
+      return "You're welcome! 😊 Feel free to explore the rest of my portfolio.";
+
+    return "I can answer questions about my education, EMMRC experience, skills, projects and contact details. Try asking about one of these topics!";
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+
+    addMessage(question, "user-msg");
+    addMessage(getReply(question), "bot-msg");
+    input.value = "";
+    input.focus();
+  });
+})();
+</script>
+
 </body>
 </html>
