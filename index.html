@@ -4,156 +4,669 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio | Computer Science</title>
-  <meta name="description" content="Computer Science graduate exploring software engineering, AI, and Forward Deployed Engineering.">
+  <meta name="theme-color" content="#0b1020">
+
+  <title>Your Name | Computer Science & AI</title>
+  <meta name="description"
+        content="Portfolio of a Computer Science professional exploring AI, software engineering and practical technology solutions.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg: #0b1020;
+      --surface: #121a2e;
+      --text: #f4f5ff;
+      --muted: #a5b0ca;
+      --purple: #a78bfa;
+      --pink: #f472b6;
+      --cyan: #67e8f9;
+      --border: rgba(255,255,255,.11);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(ellipse at 10% 5%, rgba(124,58,237,.18), transparent 35%),
+        radial-gradient(ellipse at 90% 25%, rgba(14,165,233,.12), transparent 30%),
+        var(--bg);
+      color: var(--text);
       line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(1100px, 90%); margin: auto; }
+
+    .gradient-text {
+      background: linear-gradient(100deg, var(--cyan), var(--purple), var(--pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11,16,32,.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
     }
 
     nav {
+      min-height: 76px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 22px 8%;
-      border-bottom: 1px solid #263449;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    nav a, .links a {
-      color: #cbd5e1;
-      text-decoration: none;
-      margin-left: 16px;
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
     }
 
-    .logo { color: #60a5fa; font-weight: bold; font-size: 22px; }
+    .logo span { color: var(--purple); }
 
-    header {
-      padding: 100px 8% 80px;
-      max-width: 1000px;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+      color: var(--muted);
+      font-size: .93rem;
     }
 
-    .tag { color: #60a5fa; font-weight: bold; }
+    .nav-links a:hover { color: var(--cyan); }
+
+    .nav-links .contact-link {
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 9px 16px;
+      border-radius: 999px;
+    }
+
+    .hero {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1.4fr .8fr;
+      align-items: center;
+      gap: 60px;
+      padding-top: 75px;
+      padding-bottom: 85px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid rgba(167,139,250,.3);
+      background: rgba(167,139,250,.08);
+      color: #d8cbff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: .85rem;
+      margin-bottom: 24px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #86efac;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #86efac;
+    }
+
+    h1, h2, h3 { font-family: "Space Grotesk", sans-serif; line-height: 1.2; }
 
     h1 {
-      font-size: clamp(38px, 7vw, 68px);
-      line-height: 1.15;
-      margin: 18px 0;
-      color: white;
+      font-size: clamp(2.7rem, 6vw, 4.8rem);
+      letter-spacing: -2.5px;
+      margin-bottom: 22px;
     }
 
-    h2 { color: white; margin-bottom: 18px; }
-
-    .intro { max-width: 650px; color: #cbd5e1; }
-
-    .button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 12px 20px;
-      border-radius: 8px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
+    .hero-description {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 30px;
     }
 
-    section { padding: 55px 8%; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 21px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .btn:hover { transform: translateY(-3px); opacity: .9; }
+
+    .btn-primary {
+      background: linear-gradient(110deg, #8b5cf6, #d946ef);
+      color: white;
+      box-shadow: 0 8px 30px rgba(139,92,246,.22);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    .photo-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo-ring {
+      width: min(300px, 70vw);
+      aspect-ratio: 1;
+      padding: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--purple), var(--pink));
+      box-shadow: 0 0 70px rgba(139,92,246,.18);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #20294a, #15162d);
+      display: grid;
+      place-items: center;
+      color: white;
+      font: 700 4rem "Space Grotesk", sans-serif;
+    }
+
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .photo-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: .8rem;
+      margin-top: 16px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    section { padding: 85px 0; }
+
+    .section-heading { margin-bottom: 36px; }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--cyan);
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h2 { font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -1px; }
+    h3 { font-size: 1.2rem; margin-bottom: 12px; }
+    p { color: var(--muted); }
+
+    .about-grid, .experience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
 
     .card {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 24px;
-      margin-top: 15px;
-      max-width: 750px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+      transition: border-color .25s, transform .25s;
     }
 
-    .muted { color: #94a3b8; }
-    .skills { color: #93c5fd; margin-top: 10px; }
+    .card:hover {
+      border-color: rgba(167,139,250,.5);
+      transform: translateY(-4px);
+    }
+
+    .card p + p { margin-top: 12px; }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #d9dff4;
+      background: rgba(255,255,255,.035);
+      padding: 5px 10px;
+      margin: 5px 4px 0 0;
+      font-size: .82rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .skill-icon { font-size: 1.7rem; margin-bottom: 14px; }
+    .skill-card { min-height: 180px; }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .project-symbol {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(103,232,249,.16), rgba(167,139,250,.2));
+      font-size: 1.5rem;
+    }
+
+    .project-status {
+      font-size: .76rem;
+      color: var(--cyan);
+      border: 1px solid rgba(103,232,249,.25);
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+
+    .project-links { display: flex; gap: 18px; margin-top: 20px; flex-wrap: wrap; }
+    .project-links a { color: #d8cbff; font-size: .9rem; }
+    .project-links a:hover { color: var(--cyan); }
+
+    .timeline-line {
+      border-left: 2px solid rgba(167,139,250,.45);
+      padding-left: 22px;
+    }
+
+    .timeline-line .card { margin-bottom: 20px; }
+    .date { color: var(--cyan); font-size: .85rem; margin-bottom: 9px; }
+
+    .contact-card {
+      text-align: center;
+      padding: 55px 25px;
+      border-radius: 24px;
+      border: 1px solid rgba(167,139,250,.25);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(139,92,246,.17), transparent 65%),
+        var(--surface);
+    }
+
+    .contact-card p { max-width: 560px; margin: 18px auto 26px; }
 
     footer {
-      padding: 28px 8%;
-      border-top: 1px solid #263449;
-      color: #94a3b8;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .88rem;
+      text-align: center;
     }
 
-    a:focus-visible {
-      outline: 2px solid #60a5fa;
-      outline-offset: 4px;
+    .reveal { animation: appear .8s ease both; }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; text-align: center; gap: 42px; padding-top: 60px; }
+      .hero-description { margin-left: auto; margin-right: auto; }
+      .buttons { justify-content: center; }
+      .photo-area { grid-row: 1; }
+      .photo-ring { width: 210px; }
+      .avatar { font-size: 3rem; }
+      .nav-links { gap: 12px; font-size: .8rem; }
+      .nav-links .contact-link { padding: 7px 10px; }
+      .about-grid, .experience-grid, .project-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 65px 0; }
+    }
+
+    @media (max-width: 430px) {
+      .logo { font-size: 1rem; }
+      .nav-links { gap: 9px; }
+      .nav-links a { font-size: .75rem; }
+      .nav-links .contact-link { border: none; padding: 0; }
+      .skills-grid { grid-template-columns: 1fr; }
+      h1 { letter-spacing: -1.5px; }
+      .card { padding: 23px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
-
-  <nav>
-    <div class="logo">MyPortfolio.</div>
-    <div class="links">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
   <header>
-    <p class="tag">COMPUTER SCIENCE · SOFTWARE · AI</p>
-    <h1>Building solutions to real-world problems.</h1>
-    <p class="intro">
-      I'm an MSc Computer Science graduate developing my skills
-      in software engineering, APIs, databases, and AI-powered
-      applications, with a growing interest in Forward Deployed Engineering.
-    </p>
-    <a class="button" href="#projects">Explore My Projects ↓</a>
+    <nav class="container" aria-label="Main navigation">
+      <a class="logo" href="#home">Your Name<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a class="contact-link" href="#contact">Contact ↗</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-      <p>
-        I have a postgraduate background in Computer Science and
-        enjoy learning how technology can solve practical problems.
-        I'm currently building hands-on projects to strengthen my
-        software development and engineering skills.
-      </p>
-      <p class="skills">
-        Skills I'm developing: Python · Git · GitHub · SQL · APIs · AI
-      </p>
-    </div>
-  </section>
+  <main>
+    <section class="container hero" id="home">
+      <div class="reveal">
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          Computer Science · AI · Software
+        </div>
 
-  <section id="projects">
-    <h2>Featured Projects</h2>
-    <div class="card">
-      <h3>University Assistant</h3>
-      <p class="muted">Python · SQLite · FastAPI · AI</p>
-      <p>
-        A learning project designed to help students find answers
-        from university study materials.
-      </p>
-      <p class="muted">Status: In development</p>
-    </div>
-    <div class="card">
-      <h3>More projects coming soon</h3>
-      <p>
-        I'll add more projects here as I build and deploy applications.
-      </p>
-    </div>
-  </section>
+        <h1>Hello, I'm<br><span class="gradient-text">Your Name.</span></h1>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-      <p>I'm interested in connecting with people working in software
-        engineering, AI, and technology.</p>
-      <p class="skills">Add your professional email and LinkedIn links here.</p>
-    </div>
-  </section>
+        <h3>Computer Science Professional | AI & Software</h3>
+
+        <p class="hero-description">
+          I enjoy exploring technology, learning how software systems work,
+          and building practical solutions to real-world problems.
+          Currently expanding my skills in AI and software engineering.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="#projects">Explore my work ↗</a>
+          <a class="btn btn-secondary" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="photo-area">
+          <div class="photo-ring">
+            <div class="avatar">
+              <img src="profile.jpg" alt="Your profile photo"
+                   onerror="this.remove(); this.parentElement.textContent='CS';">
+            </div>
+          </div>
+        </div>
+        <p class="photo-note">Curious mind. Continuous learner. Problem solver.</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">A little about me</p>
+          <h2>Where technology meets <span class="gradient-text">curiosity.</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <article class="card">
+            <h3>My background</h3>
+            <p>
+              I hold an MSc in Computer Science, with an academic foundation
+              in Mathematics and a UGC NET qualification. My background has
+              helped me develop analytical thinking, problem-solving skills,
+              and an interest in technology and education.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>What I'm exploring</h3>
+            <p>
+              I'm developing practical skills in software engineering,
+              APIs, databases, and AI-powered applications. My goal is to
+              connect technical knowledge with real user needs and build
+              useful, reliable solutions.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Professional journey</p>
+          <h2>Experience & education</h2>
+        </div>
+
+        <div class="experience-grid">
+          <article class="card">
+            <p class="date">Professional experience</p>
+            <h3>Academic Coordinator</h3>
+            <p><strong>EMMRC, University of Calicut</strong></p>
+            <p style="margin-top: 14px">
+              Supporting academic coordination and educational content
+              activities associated with SWAYAM Prabha DTH Channel 04
+              (Aryabhatta). This experience connects technology, higher
+              education, communication, and coordination.
+            </p>
+          </article>
+
+          <article class="card">
+            <p class="date">Academic qualifications</p>
+            <h3>MSc Computer Science</h3>
+            <p>Postgraduate study in Computer Science.</p>
+            <br>
+            <h3>Bachelor's degree in Mathematics</h3>
+            <p>Mathematical foundations and analytical thinking.</p>
+            <br>
+            <span class="tag">UGC NET Qualified</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">My toolkit</p>
+          <h2>Skills I'm building</h2>
+          <p style="margin-top: 12px">
+            A growing toolkit for creating practical software and AI solutions.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="card skill-card">
+            <div class="skill-icon">🐍</div>
+            <h3>Python</h3>
+            <p>Programming fundamentals and application development.</p>
+            <span class="tag">Working knowledge</span>
+          </article>
+
+          <article class="card skill-card">
+            <div class="skill-icon">🔧</div>
+            <h3>Git & GitHub</h3>
+            <p>Version control, repositories, and project collaboration.</p>
+            <span class="tag">Learning</span>
+          </article>
+
+          <article class="card skill-card">
+            <div class="skill-icon">🗄️</div>
+            <h3>SQL & databases</h3>
+            <p>Learning to store, query, and manage application data.</p>
+            <span class="tag">Learning</span>
+          </article>
+
+          <article class="card skill-card">
+            <div class="skill-icon">🔗</div>
+            <h3>APIs & backend</h3>
+            <p>Exploring HTTP, REST APIs, and FastAPI.</p>
+            <span class="tag">Learning</span>
+          </article>
+
+          <article class="card skill-card">
+            <div class="skill-icon">✨</div>
+            <h3>Artificial intelligence</h3>
+            <p>Exploring LLMs, prompt design, and AI applications.</p>
+            <span class="tag">Exploring</span>
+          </article>
+
+          <article class="card skill-card">
+            <div class="skill-icon">🚀</div>
+            <h3>Deployment</h3>
+            <p>Learning to deploy, test, and maintain software projects.</p>
+            <span class="tag">Learning</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Things I'm working on</p>
+          <h2>Featured <span class="gradient-text">projects.</span></h2>
+          <p style="margin-top: 12px">
+            Projects will be updated as I build, test, and publish them.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="card">
+            <div class="project-top">
+              <div class="project-symbol">🤖</div>
+              <span class="project-status">In progress</span>
+            </div>
+            <h3>University Assistant</h3>
+            <p>
+              A planned AI-powered assistant that will help users find
+              answers in university study materials. The project will
+              explore document processing, question answering, APIs,
+              and AI integration.
+            </p>
+            <div>
+              <span class="tag">Python</span>
+              <span class="tag">AI / LLMs</span>
+              <span class="tag">APIs</span>
+            </div>
+            <div class="project-links">
+              <span style="color: var(--muted); font-size: .9rem">
+                Development in progress
+              </span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="project-top">
+              <div class="project-symbol">📊</div>
+              <span class="project-status">Planned</span>
+            </div>
+            <h3>Data Analysis Dashboard</h3>
+            <p>
+              A planned project to explore data cleaning, analysis,
+              visualisation, and turning datasets into useful insights.
+            </p>
+            <div>
+              <span class="tag">Python</span>
+              <span class="tag">Data analysis</span>
+              <span class="tag">Visualisation</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="project-top">
+              <div class="project-symbol">💬</div>
+              <span class="project-status">Planned</span>
+            </div>
+            <h3>AI Support Assistant</h3>
+            <p>
+              A planned conversational assistant designed to answer
+              common questions and guide users through a simple workflow.
+            </p>
+            <div>
+              <span class="tag">LLMs</span>
+              <span class="tag">Backend</span>
+              <span class="tag">Problem solving</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="project-top">
+              <div class="project-symbol">🌐</div>
+              <span class="project-status">Published</span>
+            </div>
+            <h3>Personal Portfolio</h3>
+            <p>
+              This website introduces my background, professional
+              experience, technical learning, and project journey.
+            </p>
+            <div>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
+            <div class="project-links">
+              <a href="#home">View this website ↑</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <p class="section-kicker">Let's connect</p>
+          <h2>Have an idea or opportunity?</h2>
+          <p>
+            I'm interested in learning, collaborating, and exploring
+            opportunities in software engineering and AI.
+            Feel free to reach out by email.
+          </p>
+          <a class="btn btn-primary"
+             href="mailto:your.email@example.com">
+            ✉ Email me
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2026 My Portfolio · Built with HTML and CSS</p>
+    <div class="container">
+      <p>Designed with curiosity and built for continuous learning.</p>
+      <p style="margin-top: 6px">
+        © <span id="year"></span> Your Name. All rights reserved.
+      </p>
+    </div>
   </footer>
 
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
